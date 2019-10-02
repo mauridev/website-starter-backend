@@ -72,4 +72,4 @@ mongoose.connect('mongodb+srv://mauridev:ElectromecanicA21@maurimongo-pbqll.mong
 
 app.use('/auth', auth.router)
 
-app.listen(3001)
+app.listen( process.env.PORT || 3001)
