@@ -10,6 +10,7 @@ var app = express()
 var User = require('./models/User')
 var Post = require('./models/Post')
 var auth = require('./auth')
+var seeu = require('./seeu')
 
 
 
@@ -71,5 +72,6 @@ mongoose.connect('mongodb+srv://mauridev:ElectromecanicA21@maurimongo-pbqll.mong
 })
 
 app.use('/auth', auth.router)
+app.use('/seeu', seeu.router)
 
 app.listen( process.env.PORT || 3001)
