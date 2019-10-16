@@ -5,6 +5,9 @@ var entrySchema = mongoose.Schema({
     definition: String,
     uses: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Use' }
+    ],
+    disciplines: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'DisciplineOfUse' }
     ]
 })
 

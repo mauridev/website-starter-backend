@@ -4,6 +4,7 @@ var router = express.Router()
 /*SEEU Models */
 var Entry = require('./models/seeu/Entry')
 var Use = require('./models/seeu/Use')
+var DisciplineOfUse = require('./models/seeu/Discipline')
 
 /* Entry Atributes */
 //Add new Entry
@@ -14,7 +15,7 @@ router.post('/entry', (req, res) => {
         if (err)
             return res.status(500).send({ message: 'Error Saving: New Entry'})
 
-        res.status(200).send({ message: 'The entry ' + newEntry.entry + ' was added satisfactory'})
+        res.status(200).send({ message: 'The entry ' + newEntry.term + ' was added satisfactory'})
     })
 })
 
@@ -52,6 +53,30 @@ router.get('/uses', async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).send({ message: 'We cant retrive the list of uses'})
+    }
+})
+
+
+//Add new Discipline
+router.post('/discipline', (req, res) => {
+    var disciplineData = req.body
+    var discipline = new DisciplineOfUse(disciplineData)
+    discipline.save((err, newDiscipline) => {
+        if (err)
+            return res.status(500).send({ message: 'Error Saving: New Discipline of use'})
+
+        res.status(200).send({ message: 'The discipline of use ' + newDiscipline.name + ' was added satisfactory'})
+    })
+})
+
+//List all disciplines
+router.get('/disciplines', async (req, res) => {
+    try {
+        var disciplines = await DisciplineOfUse.find({})
+        res.send(disciplines)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: 'We cant retrive the list of disciplines'})
     }
 })
 
